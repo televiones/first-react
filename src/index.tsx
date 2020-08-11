@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Hello from "./Hello";
+// import Hello from "./Hello";
+// import Timer from './Timer';
+import ListadoCarta from "./ListadoCarta";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     {/*<App />*/}
-      <Hello name="bebe"/>
+      <ListadoCarta url={"https://api.rawg.io/api/games?limit=5&search=witcher"}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
