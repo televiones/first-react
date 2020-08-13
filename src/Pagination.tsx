@@ -36,7 +36,13 @@ export default class Pagination extends React.Component<PropsPagination, StatePa
     }
 
     goToPage(page: number) {
-        this.setState({currentPage: Math.max(0, Math.min(page, this.totalPages))});
+        const currentPage = Math.max(0, Math.min(page, this.totalPages));
+
+        const data = {
+            currentPage: currentPage
+        }
+
+        this.setState({currentPage}, () => this.props.onChange(data));
 
     }
 
@@ -106,11 +112,12 @@ export default class Pagination extends React.Component<PropsPagination, StatePa
             <React.Fragment>
                 <nav aria-label="Paginacion de Videojuegos">
                     <ul className="pagination">
-                        { pages.map((page, index) => {
+                        {pages.map((page, index) => {
 
                             if (page === LEFT_PAGE) return (
                                 <li key={index} className="page-item">
-                                    <a className="page-link" href="#" aria-label="Previous" onClick={this.handleMoveLeft}>
+                                    <a className="page-link" href="#" aria-label="Previous"
+                                       onClick={(e) => this.handleMoveLeft(e)}>
                                         <span aria-hidden="true">&laquo;</span>
                                         <span className="sr-only">Previous</span>
                                     </a>
@@ -119,7 +126,8 @@ export default class Pagination extends React.Component<PropsPagination, StatePa
 
                             if (page === RIGHT_PAGE) return (
                                 <li key={index} className="page-item">
-                                    <a className="page-link" href="#" aria-label="Next" onClick={this.handleMoveRight}>
+                                    <a className="page-link" href="#" aria-label="Next"
+                                       onClick={(e) => this.handleMoveRight(e)}>
                                         <span aria-hidden="true">&raquo;</span>
                                         <span className="sr-only">Next</span>
                                     </a>
@@ -127,12 +135,14 @@ export default class Pagination extends React.Component<PropsPagination, StatePa
                             );
 
                             return (
-                                <li key={index} className={`page-item${ currentPage.toString() === page ? ' active' : ''}`}>
-                                    <a className="page-link" href="#" onClick={ () => this.handleClick(page, onclick) }>{ page }</a>
+                                <li key={index}
+                                    className={`page-item${currentPage.toString() === page ? ' active' : ''}`}>
+                                    <a className="page-link" href="#"
+                                       onClick={(e) => this.handleClick(page, e)}>{page}</a>
                                 </li>
                             );
 
-                        }) }
+                        })}
 
                     </ul>
                 </nav>

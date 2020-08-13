@@ -5,13 +5,14 @@ import './index.css';
 // import Hello from "./Hello";
 // import Timer from './Timer';
 // import ListadoCarta from "./ListadoCarta";
-import Carta from "./Carta";
+// import Carta from "./Carta";
+import AppPagination from "./AppPagination";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     {/*<App />*/}
-      <Carta fechaEstreno={"19/06/2020"} id={1} nombre={"Valorant"} imagen={"https://media.rawg.io/media/games/b11/b11127b9ee3c3701bd15b9af3286d20e.jpg"}/>
+    <AppPagination url={"https://api.rawg.io/api/games?limit=5&page=1&page_size=30&search=witcher"} />
   </React.StrictMode>,
   document.getElementById('root')
 );
